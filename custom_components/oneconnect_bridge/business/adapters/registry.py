@@ -10,6 +10,7 @@ from .brightness import ADAPTER as BRIGHTNESS
 from .cct import ADAPTER as CCT
 from .cleaner_robot import ADAPTER as CLEANER_ROBOT
 from .colour import ADAPTER as COLOUR
+from .electric import ADAPTER as ELECTRIC
 from .gas_sensor import ADAPTER as GAS_SENSOR
 from .fan import ADAPTER as FAN
 from .hcho import ADAPTER as HCHO
@@ -30,6 +31,7 @@ _SERVICE_ADAPTERS: dict[str, ServiceAdapter] = {
         BRIGHTNESS,
         CCT,
         COLOUR,
+        ELECTRIC,
         TEMPERATURE,
         HUMIDITY,
         AIR_DETECTOR,
