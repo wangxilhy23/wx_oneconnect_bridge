@@ -127,3 +127,38 @@ children:
   #       entities: [cover.REPLACE_WITH_CURTAIN]
   #     - sid: opener
   #       entities: [cover.REPLACE_WITH_CURTAIN]
+
+  # 家用风扇 / 风扇灯示例（fan 服务支持 ``fan.`` 域实体）：
+  #   ``switch`` 服务负责风扇的开关（switch 适配器已支持 fan 域），
+  #   ``fan`` 服务负责档位（gear_percent 把华为档位映射到 HA 的
+  #   percentage）与摇头（direction/oscillating）。
+  #   注意：华为物模型中的 fan 服务多来自空调类产品，prod_id 需替换为
+  #   华为 IoT 目录中真实存在且含 fan 服务的产品号，否则可能触发 15013。
+  # fan_light_leishi:
+  #   product:
+  #     prod_id: REPLACE_WITH_FAN_CATALOG_PRODID
+  #     sub_prod_id: "00"
+  #     device_type: REPLACE_WITH_DEVICE_TYPE
+  #     manufacturer: "002"
+  #     model: REPLACE_WITH_MODEL
+  #     friendly_name: 家用风扇灯
+  #     room: 客厅
+  #     protocol_type: 6
+  #     setup_type: 0
+  #     known_fields_only: false
+  #     services:
+  #       - st: switch
+  #         sid: switch
+  #       - st: fan
+  #         sid: fan
+  #         contract:
+  #           gear_percent:
+  #             1: 30
+  #             2: 60
+  #             3: 100
+  #           direction_enabled: false
+  #   bindings:
+  #     - sid: switch
+  #       entities: [fan.REPLACE_WITH_FAN]
+  #     - sid: fan
+  #       entities: [fan.REPLACE_WITH_FAN]

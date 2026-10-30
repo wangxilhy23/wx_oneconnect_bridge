@@ -4,6 +4,28 @@
 
 ---
 
+> [!NOTE] 来源与派生说明
+> 本仓库 fork 自 **OneConnect Bridge**（上游项目 `xiasi0/ha-oneconnect-bridge`，源代码与主流程保持不变，
+> 仅在原基础上新增了面向家用风扇 / 风扇灯的能力扩展，详见下文「本仓库新增」）。
+> 请以 [上游仓库](https://github.com/xiasi0/ha-oneconnect-bridge) 为准获取最新修复与更新；
+> 本仓库仅作为对上游的扩展与实验用途。
+
+### 本仓库新增
+
+- **`fan` 服务适配器扩展**（`business/adapters/fan.py`）：
+  - 原适配器仅支持 `climate.`（空调）实体，通过 `fan_mode` / `swing_mode` 上报档位与摆动；
+  - 本次扩展使其**同样支持 `fan.` 域实体**（家用风扇 / 吊扇 / 风扇灯），通过 HA 的
+    `percentage` 属性映射华为 `gear` 档位，通过 `oscillating` 映射 `direction` 摆动，
+    命令经 `fan.set_percentage` / `fan.oscillate` 下发；
+  - 新增契约键 `gear_percent`（档位 int → 百分比），空调原有的 `gear_values` 行为保持不变。
+- `default_mapping.yaml` 新增家用风扇灯示例（注释形式）与使用说明。
+
+> 说明：华为物模型中 `fan` 服务主要来自空调类产品。将家用风扇投影到智慧生活时，
+> 需在华为 IoT 目录中选择一条真实存在且含 `fan` 服务的产品号作为 `prod_id`，否则云端可能返回 15013。
+> 风扇的开关部分可通过 `switch` 适配器（其已支持 `fan.` 域）单独绑定。
+
+---
+
 <p align="center">
   <img src="custom_components/oneconnect_bridge/brand/icon.png" alt="OneConnect Bridge" width="160" />
 </p>
